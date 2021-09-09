@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using OrderMgmtSystem.ProductService.Data;
+using OrderMgmtSystem.ProductService.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,8 +31,9 @@ namespace ProductService
         {
 
             services.AddControllers();
-
-            services.AddDbContext<ProductContext>(options => options.UseSqlServer(Configuration["Data:ConnectionString:DefaultConnectionString"]));
+            services.AddScoped<IProductContext, ProductContext>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            //services.AddDbContext<ProductContext>(options => options.UseSqlServer(Configuration["Data:ConnectionString:DefaultConnectionString"]));
 
             services.AddSwaggerGen(c =>
             {

@@ -11,15 +11,7 @@ namespace ProductService
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build()
-                .MigrateDatabase<ProductContext>((context, services) =>
-                {
-                    var logger = services.GetService<ILogger<ProductContextSeed>>();
-                    ProductContextSeed
-                        .SeedAsync(context, logger)
-                        .Wait();
-                })
-                .Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
