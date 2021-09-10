@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "OrderMgmtSystem.UI", "OrderManagementSystem.UI\OrderMgmtSystem.UI.fsproj", "{032B4A83-B9AB-4AA0-8F9E-DE08C088A6ED}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "OrderMgmtSystem.UI", "OrderManagementSystem.UI\OrderMgmtSystem.UI.fsproj", "{032B4A83-B9AB-4AA0-8F9E-DE08C088A6ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderMgmtSystem.ProductService", "ProductService\OrderMgmtSystem.ProductService.csproj", "{7D470E31-2819-4777-80E1-AE67593F22EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderMgmtSystem.ProductService", "ProductService\OrderMgmtSystem.ProductService.csproj", "{7D470E31-2819-4777-80E1-AE67593F22EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderMgmtSys.OrderService", "OrderMgmtSys.OrderService\OrderMgmtSys.OrderService.csproj", "{4BE60C3F-6FD2-463E-935E-CCBDDF185DE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderMgmtSys.OrderService", "OrderMgmtSys.OrderService\OrderMgmtSys.OrderService.csproj", "{4BE60C3F-6FD2-463E-935E-CCBDDF185DE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8D1CF518-D9BC-407F-8804-4319947A8DBE}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yaml = docker-compose.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
