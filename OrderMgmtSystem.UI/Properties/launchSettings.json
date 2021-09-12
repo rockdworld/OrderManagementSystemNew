@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:35514",
-      "sslPort": 44352
+      "applicationUrl": "http://localhost:19305",
+      "sslPort": 44328
     }
   },
   "profiles": {
@@ -15,14 +15,14 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "OrderManagementSystem.UI": {
+    "OrderMgmtSystem.UI": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": "true",
-      "applicationUrl": "https://localhost:5000"
+      "applicationUrl": "https://localhost:5003"
     },
     "Docker": {
       "commandName": "Docker",

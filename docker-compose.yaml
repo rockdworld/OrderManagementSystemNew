@@ -1,15 +1,17 @@
 version: '3.6'
 services:
   productdb:
+    container_name: product_db
     image: mongo
     ports: 
-      - "27017:27017"
+      - "17017:27017"
     restart: always
 
   orderdb:
+    container_name: order_db
     image: mysql
     ports:
-      - "3306:3306"
+      - "5406:3306"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: Azure123
@@ -18,3 +20,71 @@ services:
       MYSQL_PASSWORD: Azure
     volumes:
       - ./init:/docker-entrypoint-initdb.d 
+
+  orderapi:
+    container_name: orderapi
+    build: 
+      context: .
+      dockerfile: ./OrderMgmtSys.OrderService/Dockerfile
+    depends_on:
+      - orderdb
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DatabaseSettings:ConnectionString=server=order_db;port=5406;user=root;password=Azure123;database=orderdb
+    expose:
+      - "80" 
+    ports:
+      - "6001:80"
+    networks:
+      - app-network
+    restart: always
+
+  productapi:
+    container_name: productapi
+    build: 
+      context: .
+      dockerfile: ./ProductService/Dockerfile
+    depends_on:
+      - orderdb
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DatabaseSettings:ConnectionString=mongodb://product_db:17017
+      - DatabaseSettings:DatabaseName=ProductDB
+      - DatabaseSettings:CollectionName:Products
+    expose:
+      - "80" 
+    ports:
+      - "6002:80"
+    networks:
+      - app-network
+    restart: always
+  
+  web:
+    container_name: ordermgmtsys
+    build: 
+      context: .
+      dockerfile: ./OrderMgmtSystem.UI/Dockerfile
+    depends_on:
+      - orderdb
+      - productdb
+      - orderapi
+      - productapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - OrderAPIBaseUrl=https://localhost:6001/api/order
+      - ProductAPIBaseUrl=https://localhost:6002/api/product
+
+    expose:
+      - "80" 
+    ports:
+      - "6003:80"
+    networks:
+      - app-network
+    restart: always 
+
+networks:
+  app-network:
+    driver: bridge
+
+      
+      

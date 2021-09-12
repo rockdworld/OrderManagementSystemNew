@@ -7,14 +7,14 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["OrderManagementSystem.UI/OrderMgmtSystem.UI.fsproj", "OrderManagementSystem.UI/"]
-RUN dotnet restore "OrderManagementSystem.UI/OrderMgmtSystem.UI.fsproj"
+COPY ["OrderMgmtSystem.UI/OrderMgmtSystem.UI.csproj", "OrderMgmtSystem.UI/"]
+RUN dotnet restore "OrderMgmtSystem.UI/OrderMgmtSystem.UI.csproj"
 COPY . .
-WORKDIR "/src/OrderManagementSystem.UI"
-RUN dotnet build "OrderMgmtSystem.UI.fsproj" -c Release -o /app/build
+WORKDIR "/src/OrderMgmtSystem.UI"
+RUN dotnet build "OrderMgmtSystem.UI.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "OrderMgmtSystem.UI.fsproj" -c Release -o /app/publish
+RUN dotnet publish "OrderMgmtSystem.UI.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
